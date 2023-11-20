@@ -1,4 +1,6 @@
-﻿namespace mega_sena.Core
+﻿using mega_sena.Entity;
+
+namespace mega_sena.Core
 {
 	public static class MegaSenaFormat
 	{
