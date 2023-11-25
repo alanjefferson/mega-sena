@@ -10,7 +10,7 @@ namespace mega_sena.Core
 		{
             List<MegaSena> lstMegaSena = new List<MegaSena>();
 
-            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open("C:\\mega-sena\\mega-sena.xlsx", false))
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open("C:\\mega-sena\\Mega-Sena.xlsx", false))
             {
                 WorkbookPart workbookPart = spreadsheetDocument.WorkbookPart;
                 WorksheetPart worksheetPart = workbookPart.WorksheetParts.First();
@@ -34,7 +34,7 @@ namespace mega_sena.Core
 
                     if (rowNumber > 0)
                     {
-                        Console.WriteLine(string.Format("Reading - Concurso: {0}", objMegaSena.Concurso));
+                        //Console.WriteLine(string.Format("Reading - Concurso: {0}", objMegaSena.Concurso));
                         lstMegaSena.Add(objMegaSena);
                     }
 

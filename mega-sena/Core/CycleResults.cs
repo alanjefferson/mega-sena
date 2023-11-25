@@ -33,12 +33,12 @@ namespace mega_sena
 					lstCycle.Add(objCycle);
 					
 					Console.WriteLine(string.Format("Cycle End: {0}, Concurso: {1}", endCycleDate, lastNumber));
-					PrintCycleNumbersTimes(objCycle);
+					//PrintCycleNumbersTimes(objCycle);
 
 					objCycle = new Cycle();
 				}
 
-				if (obj.Bola1 == 1 || obj.Bola2 == 1 || obj.Bola3 == 1 || obj.Bola4 == 1 || obj.Bola5 == 1 || obj.Bola6 == 1) { objCycle.Number01 = true; objCycle.TimesNum01++; }
+				if (obj.Bola1 == 1 || obj.Bola2 == 1 || obj.Bola3 == 1 || obj.Bola4 == 1 || obj.Bola5 == 1 || obj.Bola6 == 1) { objCycle.Number01 = true; objCycle.TimesNum01++; } //Add number date
 				if (obj.Bola1 == 2 || obj.Bola2 == 2 || obj.Bola3 == 2 || obj.Bola4 == 2 || obj.Bola5 == 2 || obj.Bola6 == 2) { objCycle.Number02 = true; objCycle.TimesNum02++; }
 				if (obj.Bola1 == 3 || obj.Bola2 == 3 || obj.Bola3 == 3 || obj.Bola4 == 3 || obj.Bola5 == 3 || obj.Bola6 == 3) { objCycle.Number03 = true; objCycle.TimesNum03++; }
 				if (obj.Bola1 == 4 || obj.Bola2 == 4 || obj.Bola3 == 4 || obj.Bola4 == 4 || obj.Bola5 == 4 || obj.Bola6 == 4) { objCycle.Number04 = true; objCycle.TimesNum04++; }
