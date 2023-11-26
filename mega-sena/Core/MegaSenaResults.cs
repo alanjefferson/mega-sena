@@ -27,12 +27,15 @@ namespace mega_sena.Core
                     {
                         foreach (Cell c in r.Elements<Cell>())
                         {
-                            objMegaSena = MegaSenaFormat.LinhaConcurso(colNumber, c.InnerText, objMegaSena);
-                            colNumber++;
+                            if(!string.IsNullOrEmpty(c.InnerText))
+                            {
+								objMegaSena = MegaSenaFormat.LinhaConcurso(colNumber, c.InnerText, objMegaSena);
+								colNumber++;
+							}
                         }
                     }
 
-                    if (rowNumber > 0)
+                    if (rowNumber > 0 && objMegaSena.Concurso > 0)
                     {
                         Console.WriteLine(string.Format("Reading - Concurso: {0}", objMegaSena.Concurso));
                         lstMegaSena.Add(objMegaSena);
