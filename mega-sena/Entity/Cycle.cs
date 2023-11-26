@@ -4,65 +4,65 @@
 	{
 		private DateTime? endCycle;
 		private bool number01;
-        private bool number02;
-        private bool number03;
-        private bool number04;
-        private bool number05;
-        private bool number06;
-        private bool number07;
-        private bool number08;
-        private bool number09;
-        private bool number10;
-        private bool number11;
-        private bool number12;
-        private bool number13;
-        private bool number14;
-        private bool number15;
-        private bool number16;
-        private bool number17;
-        private bool number18;
-        private bool number19;
+		private bool number02;
+		private bool number03;
+		private bool number04;
+		private bool number05;
+		private bool number06;
+		private bool number07;
+		private bool number08;
+		private bool number09;
+		private bool number10;
+		private bool number11;
+		private bool number12;
+		private bool number13;
+		private bool number14;
+		private bool number15;
+		private bool number16;
+		private bool number17;
+		private bool number18;
+		private bool number19;
 		private bool number20;
 		private bool number21;
-        private bool number22;
-        private bool number23;
-        private bool number24;
-        private bool number25;
-        private bool number26;
-        private bool number27;
-        private bool number28;
-        private bool number29;
-        private bool number30;
-        private bool number31;
-        private bool number32;
-        private bool number33;
-        private bool number34;
-        private bool number35;
-        private bool number36;
-        private bool number37;
-        private bool number38;
-        private bool number39;
-        private bool number40;
-        private bool number41;
-        private bool number42;
-        private bool number43;
-        private bool number44;
-        private bool number45;
-        private bool number46;
-        private bool number47;
-        private bool number48;
-        private bool number49;
-        private bool number50;
-        private bool number51;
-        private bool number52;
-        private bool number53;
-        private bool number54;
-        private bool number55;
-        private bool number56;
-        private bool number57;
-        private bool number58;
-        private bool number59;
-        private bool number60;
+		private bool number22;
+		private bool number23;
+		private bool number24;
+		private bool number25;
+		private bool number26;
+		private bool number27;
+		private bool number28;
+		private bool number29;
+		private bool number30;
+		private bool number31;
+		private bool number32;
+		private bool number33;
+		private bool number34;
+		private bool number35;
+		private bool number36;
+		private bool number37;
+		private bool number38;
+		private bool number39;
+		private bool number40;
+		private bool number41;
+		private bool number42;
+		private bool number43;
+		private bool number44;
+		private bool number45;
+		private bool number46;
+		private bool number47;
+		private bool number48;
+		private bool number49;
+		private bool number50;
+		private bool number51;
+		private bool number52;
+		private bool number53;
+		private bool number54;
+		private bool number55;
+		private bool number56;
+		private bool number57;
+		private bool number58;
+		private bool number59;
+		private bool number60;
 		private int timesNum01;
 		private int timesNum02;
 		private int timesNum03;
@@ -123,6 +123,66 @@
 		private int timesNum58;
 		private int timesNum59;
 		private int timesNum60;
+		private DateTime? numDate01;
+		private DateTime? numDate02;
+		private DateTime? numDate03;
+		private DateTime? numDate04;
+		private DateTime? numDate05;
+		private DateTime? numDate06;
+		private DateTime? numDate07;
+		private DateTime? numDate08;
+		private DateTime? numDate09;
+		private DateTime? numDate10;
+		private DateTime? numDate11;
+		private DateTime? numDate12;
+		private DateTime? numDate13;
+		private DateTime? numDate14;
+		private DateTime? numDate15;
+		private DateTime? numDate16;
+		private DateTime? numDate17;
+		private DateTime? numDate18;
+		private DateTime? numDate19;
+		private DateTime? numDate20;
+		private DateTime? numDate21;
+		private DateTime? numDate22;
+		private DateTime? numDate23;
+		private DateTime? numDate24;
+		private DateTime? numDate25;
+		private DateTime? numDate26;
+		private DateTime? numDate27;
+		private DateTime? numDate28;
+		private DateTime? numDate29;
+		private DateTime? numDate30;
+		private DateTime? numDate31;
+		private DateTime? numDate32;
+		private DateTime? numDate33;
+		private DateTime? numDate34;
+		private DateTime? numDate35;
+		private DateTime? numDate36;
+		private DateTime? numDate37;
+		private DateTime? numDate38;
+		private DateTime? numDate39;
+		private DateTime? numDate40;
+		private DateTime? numDate41;
+		private DateTime? numDate42;
+		private DateTime? numDate43;
+		private DateTime? numDate44;
+		private DateTime? numDate45;
+		private DateTime? numDate46;
+		private DateTime? numDate47;
+		private DateTime? numDate48;
+		private DateTime? numDate49;
+		private DateTime? numDate50;
+		private DateTime? numDate51;
+		private DateTime? numDate52;
+		private DateTime? numDate53;
+		private DateTime? numDate54;
+		private DateTime? numDate55;
+		private DateTime? numDate56;
+		private DateTime? numDate57;
+		private DateTime? numDate58;
+		private DateTime? numDate59;
+		private DateTime? numDate60;
 
 		public DateTime? EndCycle { get => endCycle; set => endCycle = value; }
 		public bool Number01 { get => number01; set => number01 = value; }
@@ -245,5 +305,65 @@
 		public int TimesNum58 { get => timesNum58; set => timesNum58 = value; }
 		public int TimesNum59 { get => timesNum59; set => timesNum59 = value; }
 		public int TimesNum60 { get => timesNum60; set => timesNum60 = value; }
+		public DateTime? NumDate01 { get => numDate01; set => numDate01 = value; }
+		public DateTime? NumDate02 { get => numDate02; set => numDate02 = value; }
+		public DateTime? NumDate03 { get => numDate03; set => numDate03 = value; }
+		public DateTime? NumDate04 { get => numDate04; set => numDate04 = value; }
+		public DateTime? NumDate05 { get => numDate05; set => numDate05 = value; }
+		public DateTime? NumDate06 { get => numDate06; set => numDate06 = value; }
+		public DateTime? NumDate07 { get => numDate07; set => numDate07 = value; }
+		public DateTime? NumDate08 { get => numDate08; set => numDate08 = value; }
+		public DateTime? NumDate09 { get => numDate09; set => numDate09 = value; }
+		public DateTime? NumDate10 { get => numDate10; set => numDate10 = value; }
+		public DateTime? NumDate11 { get => numDate11; set => numDate11 = value; }
+		public DateTime? NumDate12 { get => numDate12; set => numDate12 = value; }
+		public DateTime? NumDate13 { get => numDate13; set => numDate13 = value; }
+		public DateTime? NumDate14 { get => numDate14; set => numDate14 = value; }
+		public DateTime? NumDate15 { get => numDate15; set => numDate15 = value; }
+		public DateTime? NumDate16 { get => numDate16; set => numDate16 = value; }
+		public DateTime? NumDate17 { get => numDate17; set => numDate17 = value; }
+		public DateTime? NumDate18 { get => numDate18; set => numDate18 = value; }
+		public DateTime? NumDate19 { get => numDate19; set => numDate19 = value; }
+		public DateTime? NumDate20 { get => numDate20; set => numDate20 = value; }
+		public DateTime? NumDate21 { get => numDate21; set => numDate21 = value; }
+		public DateTime? NumDate22 { get => numDate22; set => numDate22 = value; }
+		public DateTime? NumDate23 { get => numDate23; set => numDate23 = value; }
+		public DateTime? NumDate24 { get => numDate24; set => numDate24 = value; }
+		public DateTime? NumDate25 { get => numDate25; set => numDate25 = value; }
+		public DateTime? NumDate26 { get => numDate26; set => numDate26 = value; }
+		public DateTime? NumDate27 { get => numDate27; set => numDate27 = value; }
+		public DateTime? NumDate28 { get => numDate28; set => numDate28 = value; }
+		public DateTime? NumDate29 { get => numDate29; set => numDate29 = value; }
+		public DateTime? NumDate30 { get => numDate30; set => numDate30 = value; }
+		public DateTime? NumDate31 { get => numDate31; set => numDate31 = value; }
+		public DateTime? NumDate32 { get => numDate32; set => numDate32 = value; }
+		public DateTime? NumDate33 { get => numDate33; set => numDate33 = value; }
+		public DateTime? NumDate34 { get => numDate34; set => numDate34 = value; }
+		public DateTime? NumDate35 { get => numDate35; set => numDate35 = value; }
+		public DateTime? NumDate36 { get => numDate36; set => numDate36 = value; }
+		public DateTime? NumDate37 { get => numDate37; set => numDate37 = value; }
+		public DateTime? NumDate38 { get => numDate38; set => numDate38 = value; }
+		public DateTime? NumDate39 { get => numDate39; set => numDate39 = value; }
+		public DateTime? NumDate40 { get => numDate40; set => numDate40 = value; }
+		public DateTime? NumDate41 { get => numDate41; set => numDate41 = value; }
+		public DateTime? NumDate42 { get => numDate42; set => numDate42 = value; }
+		public DateTime? NumDate43 { get => numDate43; set => numDate43 = value; }
+		public DateTime? NumDate44 { get => numDate44; set => numDate44 = value; }
+		public DateTime? NumDate45 { get => numDate45; set => numDate45 = value; }
+		public DateTime? NumDate46 { get => numDate46; set => numDate46 = value; }
+		public DateTime? NumDate47 { get => numDate47; set => numDate47 = value; }
+		public DateTime? NumDate48 { get => numDate48; set => numDate48 = value; }
+		public DateTime? NumDate49 { get => numDate49; set => numDate49 = value; }
+		public DateTime? NumDate50 { get => numDate50; set => numDate50 = value; }
+		public DateTime? NumDate51 { get => numDate51; set => numDate51 = value; }
+		public DateTime? NumDate52 { get => numDate52; set => numDate52 = value; }
+		public DateTime? NumDate53 { get => numDate53; set => numDate53 = value; }
+		public DateTime? NumDate54 { get => numDate54; set => numDate54 = value; }
+		public DateTime? NumDate55 { get => numDate55; set => numDate55 = value; }
+		public DateTime? NumDate56 { get => numDate56; set => numDate56 = value; }
+		public DateTime? NumDate57 { get => numDate57; set => numDate57 = value; }
+		public DateTime? NumDate58 { get => numDate58; set => numDate58 = value; }
+		public DateTime? NumDate59 { get => numDate59; set => numDate59 = value; }
+		public DateTime? NumDate60 { get => numDate60; set => numDate60 = value; }
 	}
 }
