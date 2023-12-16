@@ -3,6 +3,7 @@
 	public class Cycle
 	{
 		private DateTime? endCycle;
+		private List<CycleNumber> cycleNumbers;
 		private bool number01;
 		private bool number02;
 		private bool number03;
@@ -185,6 +186,7 @@
 		private DateTime? numDate60;
 
 		public DateTime? EndCycle { get => endCycle; set => endCycle = value; }
+		public List<CycleNumber> CycleNumbers { get => cycleNumbers == null ? new List<CycleNumber>() : cycleNumbers; set => cycleNumbers = value; }
 		public bool Number01 { get => number01; set => number01 = value; }
 		public bool Number02 { get => number02; set => number02 = value; }
 		public bool Number03 { get => number03; set => number03 = value; }

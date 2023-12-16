@@ -1,16 +1,109 @@
-﻿using mega_sena.Entity;
+﻿using DocumentFormat.OpenXml.Office2016.Presentation.Command;
+using mega_sena.Entity;
+using System.Runtime.CompilerServices;
 
 namespace mega_sena
 {
 	public static class CycleResults
 	{
-	
+		private static List<CycleNumber> createCycleNumbers()
+		{
+			List<CycleNumber> lstCycleNumber = new List<CycleNumber>();
+
+			for (int i = 1; i <= 60; i++)
+			{
+				CycleNumber objCycleNumber = new CycleNumber();
+				objCycleNumber.Number = i;
+				lstCycleNumber.Add(objCycleNumber);
+			}
+
+			return lstCycleNumber;
+		}
+
+		public static List<Cycle> GetCycleListV2(List<MegaSena> lstMegaSena)
+		{
+			Cycle objCycle = new Cycle();
+			objCycle.CycleNumbers = createCycleNumbers();
+
+			List<Cycle> lstCycle = new List<Cycle>();
+			DateTime? endCycleDate = new DateTime?();
+			int lastNumber = 0;
+
+			foreach (MegaSena obj in lstMegaSena)
+			{
+				if (allNumberHasBeenDrawn(objCycle))
+				{
+					objCycle.EndCycle = endCycleDate;
+					lstCycle.Add(objCycle);
+
+					Console.WriteLine(string.Format("Cycle End: {0}, Concurso: {1}", endCycleDate, lastNumber));
+					PrintCycleNumbersTimesV2(objCycle);
+
+					Cycle newObjCycle = CreateNewCycleWithLastNumbersDate(objCycle); //TO-DO V2
+					objCycle = newObjCycle;
+				}
+
+				FlagCountUpdateDateNumbersV2(objCycle, obj);
+
+				endCycleDate = obj.DataDoSorteio;
+				lastNumber = obj.Concurso;
+
+				if (lstMegaSena.Last().Concurso == obj.Concurso)
+				{
+					Console.WriteLine(string.Format("Cycle End: --, Concurso: {0}", lastNumber));
+					PrintCycleNumbersTimesV2(objCycle);
+				}
+
+			}
+
+			return lstCycle;
+		}
+
+		private static bool allNumberHasBeenDrawn(Cycle objCycle)
+		{
+			foreach (CycleNumber item in objCycle.CycleNumbers)
+				if (!item.Drawn)
+					return false;
+
+			return true;
+		}
+
+		private static void FlagCountUpdateDateNumbersV2(Cycle objCycle, MegaSena obj)
+		{
+			for (int i = 1; i <= 60; i++)
+			{
+				if (obj.Bola1 == i || obj.Bola2 == i || obj.Bola3 == i || obj.Bola4 == i || obj.Bola5 == i || obj.Bola6 == i)
+				{
+					objCycle.CycleNumbers[i - 1].Drawn = true;
+					objCycle.CycleNumbers[i - 1].Times++;
+					objCycle.CycleNumbers[i - 1].LastDrawn = obj.DataDoSorteio;
+				}
+			}
+		}
+
+		private static void PrintCycleNumbersTimesV2(Cycle objCycle)
+		{
+			for (int i = 0; i < 60; i++)
+				Console.WriteLine(string.Format("{0} {1}", objCycle.CycleNumbers[i].Times, objCycle.CycleNumbers[i].LastDrawn?.ToString("dd/MM/yyyy")));
+		}
+
+		private static Cycle CreateNewCycleWithLastNumbersDateV2(Cycle objCycle)
+		{
+			Cycle newObjCycle = new Cycle();
+			
+			for (int i = 0; i < 60; i++)
+				newObjCycle.CycleNumbers[i].LastDrawn = objCycle.CycleNumbers[i].LastDrawn;
+
+			return newObjCycle;
+		}
+
 		public static List<Cycle> GetCycleList(List<MegaSena> lstMegaSena)
 		{
 			Cycle objCycle = new Cycle();
 			List<Cycle> lstCycle = new List<Cycle>();
 			DateTime? endCycleDate = new DateTime?();
 			int lastNumber = 0;
+			objCycle.CycleNumbers = createCycleNumbers();
 
 			foreach (MegaSena obj in lstMegaSena)
 			{
