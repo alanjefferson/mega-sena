@@ -37,7 +37,7 @@ namespace mega_sena.Core
 
                     if (rowNumber > 0 && objMegaSena.Concurso > 0)
                     {
-                        Console.WriteLine(string.Format("Reading - Concurso: {0}", objMegaSena.Concurso));
+                        //Console.WriteLine(string.Format("Reading - Concurso: {0}", objMegaSena.Concurso));
                         lstMegaSena.Add(objMegaSena);
                     }
 
