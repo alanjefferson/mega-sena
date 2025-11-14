@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace mega_sena
+{
+    public static class AnalyzeOneTimeNumbers
+    {
+        public static void Analyze()
+        {
+            string outputFolder = "Output";
+            var files = Directory.GetFiles(outputFolder, "*.csv");
+            
+            // Track which numbers have been drawn exactly 1 time in at least one cycle
+            var numbersDrawnOnce = new HashSet<int>();
+            
+            foreach (var file in files)
+            {
+                var lines = File.ReadAllLines(file);
+                
+                // Skip header line and read the 60 number lines
+                for (int i = 1; i <= 60; i++)
+                {
+                    if (i < lines.Length)
+                    {
+                        var parts = lines[i].Split(',');
+                        if (parts.Length >= 2)
+                        {
+                            int number = int.Parse(parts[0]);
+                            int times = int.Parse(parts[1]);
+                            
+                            if (times == 1)
+                            {
+                                numbersDrawnOnce.Add(number);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Find numbers that were NEVER drawn exactly once
+            var allNumbers = Enumerable.Range(1, 60).ToList();
+            var neverDrawnOnce = allNumbers.Except(numbersDrawnOnce).OrderBy(n => n).ToList();
+            
+            Console.WriteLine("\n=== ANALYSIS: Numbers Never Drawn Exactly Once ===");
+            Console.WriteLine($"Total cycles analyzed: {files.Length}");
+            Console.WriteLine($"Numbers that have been drawn exactly 1 time in at least one cycle: {numbersDrawnOnce.Count}");
+            Console.WriteLine($"Numbers that have NEVER been drawn exactly 1 time in any cycle: {neverDrawnOnce.Count}");
+            
+            if (neverDrawnOnce.Count > 0)
+            {
+                Console.WriteLine("\nNumbers that were NEVER drawn exactly once:");
+                Console.WriteLine(string.Join(", ", neverDrawnOnce));
+            }
+            else
+            {
+                Console.WriteLine("\nAll numbers (1-60) have been drawn exactly once in at least one cycle.");
+            }
+            
+            Console.WriteLine("\n=== END OF ANALYSIS ===\n");
+        }
+    }
+}
+
