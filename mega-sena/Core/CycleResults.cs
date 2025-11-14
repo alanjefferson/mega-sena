@@ -1,4 +1,5 @@
-﻿using mega_sena.Entity;
+﻿using mega_sena.Core;
+using mega_sena.Entity;
 
 namespace mega_sena
 {
@@ -20,6 +21,7 @@ namespace mega_sena
 			List<Cycle> lstCycle = new List<Cycle>();
 			DateTime? endCycleDate = new DateTime?();
 			int lastNumber = 0;
+			bool isFirstDraw = true;
 
 			foreach (MegaSena obj in lstMegaSena)
 			{
@@ -28,21 +30,28 @@ namespace mega_sena
 					objCycle.EndCycle = endCycleDate;
 					lstCycle.Add(objCycle);
 
-					PrintCycleNumbersTimes(objCycle, endCycleDate, lastNumber);
+					CycleResultsWriter.WriteCycleToCSV(objCycle, endCycleDate, lastNumber);
 
 					Cycle newObjCycle = CreateNewCycleWithLastNumbersDate(objCycle);
 					objCycle = newObjCycle;
+					isFirstDraw = true;
 				}
 
 				FlagCountUpdateDateNumbers(objCycle, obj);
+
+				// Set the start date when the first number is drawn in the cycle
+				if (isFirstDraw && objCycle.StartCycle == null)
+				{
+					objCycle.StartCycle = obj.DataDoSorteio;
+					isFirstDraw = false;
+				}
 
 				endCycleDate = obj.DataDoSorteio;
 				lastNumber = obj.Concurso;
 
 				if (lstMegaSena.Last().Concurso == obj.Concurso)
 				{
-					Console.WriteLine(string.Format("Cycle End: --, Concurso: {0}", lastNumber));
-					PrintCycleNumbersTimes(objCycle);
+					CycleResultsWriter.WriteCycleToCSV(objCycle, null, lastNumber, true);
 				}
 
 			}
@@ -86,21 +95,7 @@ namespace mega_sena
 			}
 		}
 
-		private void PrintCycleNumbersTimes(Cycle objCycle, DateTime? endCycleDate = null, int lastNumber = 0)
-		{
-			int clycleTimeNumbersMedium = 0;
 
-			if(endCycleDate != null && lastNumber > 0)
-				Console.WriteLine(string.Format("Cycle End: {0}, Concurso: {1}", endCycleDate, lastNumber));
-
-			for (int i = 0; i < 60; i++)
-			{
-				Console.WriteLine(string.Format("{0} {1} {2}", objCycle.CycleNumbers[i].Number, objCycle.CycleNumbers[i].Times, objCycle.CycleNumbers[i].LastDrawn?.ToString("dd/MM/yyyy")));
-				clycleTimeNumbersMedium = clycleTimeNumbersMedium + objCycle.CycleNumbers[i].Times;
-			}
-
-			Console.WriteLine(string.Format("clycleTimeNumbersMedium: {0}", (clycleTimeNumbersMedium / 60)));
-		}
 
 		private Cycle CreateNewCycleWithLastNumbersDate(Cycle objCycle)
 		{
