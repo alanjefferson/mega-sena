@@ -41,6 +41,17 @@ namespace mega_sena.Core
 
             csvContent.AppendLine($"Cycle Start Date,{startDateFormatted}");
             csvContent.AppendLine($"Cycle End Date,{endDateFormatted}");
+            csvContent.AppendLine();
+
+            // Add grouped numbers by frequency
+            csvContent.AppendLine("Numbers Grouped by Frequency");
+            var groupedNumbers = GroupNumbersByFrequency(objCycle);
+
+            foreach (var group in groupedNumbers.OrderByDescending(g => g.Key))
+            {
+                string numbers = string.Join(", ", group.Value.OrderBy(n => n));
+                csvContent.AppendLine($"{group.Key} times: {numbers}");
+            }
 
             // Write to file
             File.WriteAllText(filePath, csvContent.ToString(), Encoding.UTF8);
@@ -67,9 +78,28 @@ namespace mega_sena.Core
             {
                 return $"Cycle_InProgress_Concurso_{lastNumber}.csv";
             }
-            
+
             string dateStr = endCycleDate?.ToString("yyyyMMdd") ?? "Unknown";
             return $"Cycle_{dateStr}_Concurso_{lastNumber}.csv";
+        }
+
+        private static Dictionary<int, List<int>> GroupNumbersByFrequency(Cycle objCycle)
+        {
+            var groupedNumbers = new Dictionary<int, List<int>>();
+
+            foreach (var cycleNumber in objCycle.CycleNumbers)
+            {
+                int times = cycleNumber.Times;
+
+                if (!groupedNumbers.ContainsKey(times))
+                {
+                    groupedNumbers[times] = new List<int>();
+                }
+
+                groupedNumbers[times].Add(cycleNumber.Number);
+            }
+
+            return groupedNumbers;
         }
     }
 }
