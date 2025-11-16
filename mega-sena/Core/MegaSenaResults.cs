@@ -10,7 +10,7 @@ namespace mega_sena.Core
 		{
             List<MegaSena> lstMegaSena = new List<MegaSena>();
 
-            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open("C:\\mega-sena\\Mega-Sena.xlsx", false))
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open("Input\\mega-sena\\Mega-Sena.xlsx", false))
             {
                 WorkbookPart workbookPart = spreadsheetDocument.WorkbookPart;
                 WorksheetPart worksheetPart = workbookPart.WorksheetParts.First();
