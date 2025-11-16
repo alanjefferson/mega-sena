@@ -34,7 +34,7 @@ namespace mega_sena.Core
 
 				return objMegaSena;
 			}
-            catch (Exception ex) {
+            catch (Exception) {
 
 				return new MegaSena();
 

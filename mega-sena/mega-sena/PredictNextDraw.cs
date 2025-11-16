@@ -198,14 +198,14 @@ namespace mega_sena
     
     public class CycleState
     {
-        public List<CycleNumber> CycleNumbers { get; set; }
-        public List<int> RemainingNumbers { get; set; }
+        public List<CycleNumber> CycleNumbers { get; set; } = new List<CycleNumber>();
+        public List<int> RemainingNumbers { get; set; } = new List<int>();
     }
-    
+
     public class Prediction
     {
-        public List<int> Numbers { get; set; }
-        public string Rationale { get; set; }
+        public List<int> Numbers { get; set; } = new List<int>();
+        public string Rationale { get; set; } = string.Empty;
     }
 }
 

@@ -12,7 +12,9 @@ namespace mega_sena.Core
 
             using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open("Input\\mega-sena\\Mega-Sena.xlsx", false))
             {
-                WorkbookPart workbookPart = spreadsheetDocument.WorkbookPart;
+                WorkbookPart? workbookPart = spreadsheetDocument.WorkbookPart;
+                if (workbookPart == null) return lstMegaSena;
+
                 WorksheetPart worksheetPart = workbookPart.WorksheetParts.First();
                 SheetData sheetData = worksheetPart.Worksheet.Elements<SheetData>().First();
 
