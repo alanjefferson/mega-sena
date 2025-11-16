@@ -1,6 +1,8 @@
 using mega_sena.Entity;
+using mega_sena.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace mega_sena
@@ -300,18 +302,6 @@ namespace mega_sena
 
             return state;
         }
-    }
-    
-    public class CycleState
-    {
-        public List<CycleNumber> CycleNumbers { get; set; } = new List<CycleNumber>();
-        public List<int> RemainingNumbers { get; set; } = new List<int>();
-    }
-
-    public class Prediction
-    {
-        public List<int> Numbers { get; set; } = new List<int>();
-        public string Rationale { get; set; } = string.Empty;
     }
 }
 

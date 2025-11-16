@@ -1,21 +1,12 @@
 using mega_sena.Core;
 using mega_sena.Entity;
+using mega_sena.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace mega_sena
 {
-    public class ThreeRemainingScenario
-    {
-        public int Concurso { get; set; }
-        public DateTime? Date { get; set; }
-        public int CycleNumber { get; set; }
-        public List<int> WinningNumbers { get; set; } = new List<int>();
-        public List<int> FrequenciesOfWinningNumbers { get; set; } = new List<int>();
-        public List<int> RemainingNumbers { get; set; } = new List<int>();
-    }
-
     /// <summary>
     /// Analyzes winning number patterns when exactly 3 numbers remain in a cycle.
     ///

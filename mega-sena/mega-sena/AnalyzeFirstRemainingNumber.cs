@@ -1,19 +1,11 @@
 using mega_sena.Entity;
+using mega_sena.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace mega_sena
 {
-    public class RemainingNumberScenario
-    {
-        public int CycleNumber { get; set; }
-        public List<int> RemainingNumbers { get; set; } = new List<int>();
-        public int FirstDrawn { get; set; }
-        public int ConcursoFirstDrawn { get; set; }
-        public DateTime? DateFirstDrawn { get; set; }
-    }
-
     /// <summary>
     /// Analyzes which of 3 remaining numbers gets drawn first based on position patterns.
     ///
