@@ -7,16 +7,31 @@ namespace mega_sena
 {
     public static class PredictNextDraw
     {
-        public static void GeneratePredictions(List<MegaSena> lstMegaSena)
+        /// <summary>
+        /// Generate predictions for next draws - fully generic version
+        /// </summary>
+        /// <param name="lstMegaSena">List of all Mega-Sena draws</param>
+        /// <param name="useCurrentCycle">If true, reads from CSV. If false, must provide cycleState</param>
+        /// <param name="cycleState">Optional: provide a specific cycle state to analyze</param>
+        public static void GeneratePredictions(List<MegaSena> lstMegaSena, bool useCurrentCycle = true, CycleState? cycleState = null)
         {
-            // Get current cycle state from CSV file
-            var currentCycle = GetCurrentCycleStateFromCSV();
+            // Get cycle state
+            var currentCycle = useCurrentCycle ? GetCurrentCycleStateFromCSV() : cycleState;
+
+            if (currentCycle == null || currentCycle.RemainingNumbers.Count == 0)
+            {
+                Console.WriteLine("Error: No cycle state available or no remaining numbers.");
+                return;
+            }
+
+            int remainingCount = currentCycle.RemainingNumbers.Count;
 
             Console.WriteLine("\n=== PREDICTION FOR NEXT DRAWS ===");
-            Console.WriteLine("Based on historical analysis when 3 numbers remain\n");
+            Console.WriteLine($"Based on historical analysis when {remainingCount} number{(remainingCount > 1 ? "s" : "")} remain\n");
 
             Console.WriteLine("Current Cycle Status:");
             Console.WriteLine($"Numbers remaining: {string.Join(", ", currentCycle.RemainingNumbers)}");
+            Console.WriteLine($"Total remaining: {remainingCount}");
             Console.WriteLine();
 
             // Get numbers grouped by frequency
@@ -33,7 +48,9 @@ namespace mega_sena
             }
             Console.WriteLine();
 
-            // Generate 3 prediction scenarios (one for each remaining number)
+            // Generate prediction scenarios (one for each remaining number)
+            Console.WriteLine($"=== GENERATING {remainingCount} SCENARIO{(remainingCount > 1 ? "S" : "")} ===\n");
+
             foreach (int remainingNum in currentCycle.RemainingNumbers)
             {
                 Console.WriteLine($"=== SCENARIO: If number {remainingNum} is drawn ===");
@@ -44,18 +61,22 @@ namespace mega_sena
                 {
                     Console.WriteLine($"\nStrategy #{i + 1}: {predictions[i].Rationale}");
                     Console.WriteLine($"  Complete 6-number bet: {string.Join("-", predictions[i].Numbers.OrderBy(n => n))}");
-                    Console.WriteLine($"  Breakdown: [{remainingNum}] + [{string.Join(", ", predictions[i].Numbers.Where(n => n != remainingNum).OrderBy(n => n))}]");
+
+                    // Show breakdown
+                    var otherNumbers = predictions[i].Numbers.Where(n => n != remainingNum).OrderBy(n => n).ToList();
+                    Console.WriteLine($"  Breakdown: [{remainingNum}] + [{string.Join(", ", otherNumbers)}]");
                 }
 
                 Console.WriteLine();
             }
 
             // Summary: Best bets across all scenarios
+            int summaryCount = Math.Min(remainingCount, 5); // Show top 5 or less
             Console.WriteLine("=== RECOMMENDED BETS SUMMARY ===");
-            Console.WriteLine("Top 3 recommended complete bets:\n");
+            Console.WriteLine($"Top {summaryCount} recommended complete bet{(summaryCount > 1 ? "s" : "")}:\n");
 
             int betNumber = 1;
-            foreach (int remainingNum in currentCycle.RemainingNumbers.OrderByDescending(n => n))
+            foreach (int remainingNum in currentCycle.RemainingNumbers.OrderByDescending(n => n).Take(summaryCount))
             {
                 var prediction = GeneratePredictionByFrequencyRange(currentCycle, remainingNum, 2, 4,
                     $"Mid-range frequency (2-4 times) with remaining number {remainingNum}");
@@ -68,7 +89,41 @@ namespace mega_sena
 
             Console.WriteLine("=== END OF PREDICTIONS ===\n");
         }
-        
+
+        /// <summary>
+        /// Generate predictions for a specific number of remaining numbers
+        /// This allows testing "what if we had N numbers remaining?"
+        /// </summary>
+        public static void GeneratePredictionsForRemainingCount(List<MegaSena> lstMegaSena, int remainingCount)
+        {
+            if (remainingCount < 1 || remainingCount > 60)
+            {
+                Console.WriteLine($"Error: remainingCount must be between 1 and 60. Got: {remainingCount}");
+                return;
+            }
+
+            // Get current cycle state
+            var currentCycle = GetCurrentCycleStateFromCSV();
+
+            if (currentCycle == null)
+            {
+                Console.WriteLine("Error: Could not read current cycle state.");
+                return;
+            }
+
+            // Check if current cycle has the requested remaining count
+            if (currentCycle.RemainingNumbers.Count == remainingCount)
+            {
+                Console.WriteLine($"Current cycle has exactly {remainingCount} remaining numbers. Generating predictions...\n");
+                GeneratePredictions(lstMegaSena, true, null);
+            }
+            else
+            {
+                Console.WriteLine($"Note: Current cycle has {currentCycle.RemainingNumbers.Count} remaining numbers, not {remainingCount}.");
+                Console.WriteLine($"To generate predictions for {remainingCount} remaining numbers, wait until a cycle reaches that state.\n");
+            }
+        }
+
         private static List<Prediction> GeneratePredictionSet(CycleState cycle, int includedRemainingNumber)
         {
             var predictions = new List<Prediction>();
