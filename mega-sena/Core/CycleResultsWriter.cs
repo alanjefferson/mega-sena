@@ -3,6 +3,11 @@ using System.Text;
 
 namespace mega_sena.Core
 {
+    /// <summary>
+    /// Writes Mega-Sena cycle results to CSV files with comprehensive statistics.
+    /// Generates formatted output files containing number frequencies, cycle dates,
+    /// and grouped number distributions for analysis.
+    /// </summary>
     public static class CycleResultsWriter
     {
         private static readonly string OutputFolder = "Output";
