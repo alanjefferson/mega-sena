@@ -5,6 +5,17 @@ using System.Linq;
 
 namespace mega_sena
 {
+    /// <summary>
+    /// Analyzes whether all 60 Mega-Sena numbers have been drawn exactly once in at least one cycle.
+    ///
+    /// Purpose: Verify the completeness of cycle coverage - ensures that every number from 1-60
+    /// has appeared exactly once in at least one historical cycle, validating the cycle concept.
+    ///
+    /// Key Finding: All 60 numbers have been drawn exactly once in at least one cycle,
+    /// confirming that the cycle-based analysis approach is valid and comprehensive.
+    ///
+    /// Usage: AnalyzeOneTimeNumbers.Analyze();
+    /// </summary>
     public static class AnalyzeOneTimeNumbers
     {
         public static void Analyze()

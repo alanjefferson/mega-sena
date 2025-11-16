@@ -15,6 +15,35 @@ namespace mega_sena
         public DateTime? DateFirstDrawn { get; set; }
     }
 
+    /// <summary>
+    /// GENERIC analysis tool that works with ANY number of remaining numbers (2 to 60).
+    ///
+    /// Purpose: Analyze which remaining number gets drawn first when N numbers remain in a cycle.
+    /// This is the fully flexible version that replaces hardcoded analysis tools.
+    ///
+    /// Features:
+    /// - Works with any count from 2 to 60 remaining numbers
+    /// - Automatic position labeling (Lowest/Highest for 2, Lowest/Middle/Highest for 3, Position 1-N for 4+)
+    /// - Five comprehensive pattern analyses
+    ///
+    /// Patterns Analyzed:
+    /// 1. Position Analysis - Which position (1st, 2nd, 3rd, etc.) gets drawn first
+    /// 2. Number Range - Distribution across 1-20, 21-40, 41-60
+    /// 3. Even vs Odd - Parity patterns
+    /// 4. Spacing - Average gaps between remaining numbers
+    /// 5. Specific Numbers - Top 10 most frequently drawn numbers
+    ///
+    /// Example Results:
+    /// - 2 remaining: Lowest 54.9%, Highest 45.1%
+    /// - 3 remaining: Highest 44.2%, Lowest 32.7%, Middle 23.1%
+    /// - 5 remaining: Position 3 leads at 25.5%
+    /// - 10 remaining: Positions 3 & 4 lead at 17.2%
+    ///
+    /// Usage:
+    /// - AnalyzeRemainingNumbers.Analyze(lstMegaSena, 2);  // 2 remaining
+    /// - AnalyzeRemainingNumbers.Analyze(lstMegaSena, 3);  // 3 remaining (default)
+    /// - AnalyzeRemainingNumbers.Analyze(lstMegaSena, 10); // 10 remaining
+    /// </summary>
     public static class AnalyzeRemainingNumbers
     {
         /// <summary>

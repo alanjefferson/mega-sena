@@ -5,6 +5,41 @@ using System.Linq;
 
 namespace mega_sena
 {
+    /// <summary>
+    /// GENERIC prediction system that generates complete 6-number betting combinations
+    /// for Mega-Sena based on historical frequency patterns and remaining numbers.
+    ///
+    /// Purpose: Create data-driven betting strategies by combining one remaining number
+    /// with five numbers selected from historical frequency patterns.
+    ///
+    /// Features:
+    /// - Fully generic: Works with ANY number of remaining numbers (2, 3, 4, 5+)
+    /// - Automatic adaptation: Messaging and output adjust to actual remaining count
+    /// - Multiple strategies: Generates 3 different prediction approaches per remaining number
+    /// - Complete bets: All predictions are ready-to-use 6-number combinations
+    ///
+    /// Prediction Strategies:
+    /// 1. Frequency 3 Focus - Numbers drawn 3 times (22.7% historical probability)
+    /// 2. Mid-Range 2-4 - Mix of numbers drawn 2-4 times (62.5% combined probability)
+    /// 3. Balanced Approach - Average frequency ~3.08 based on historical data
+    ///
+    /// Output Format:
+    /// - Generates N scenarios (one per remaining number)
+    /// - Each scenario has 3 complete 6-number bets
+    /// - Summary shows top recommended bets
+    /// - Clear breakdown: [remaining number] + [5 other numbers]
+    ///
+    /// Example for 3 remaining (2, 20, 43):
+    /// - Scenario 1: If 2 is drawn → 3 complete bets
+    /// - Scenario 2: If 20 is drawn → 3 complete bets
+    /// - Scenario 3: If 43 is drawn → 3 complete bets
+    /// - Summary: Top 3 recommended bets
+    ///
+    /// Usage:
+    /// - PredictNextDraw.GeneratePredictions(lstMegaSena); // Uses current cycle
+    /// - PredictNextDraw.GeneratePredictions(lstMegaSena, true, null); // Explicit current cycle
+    /// - PredictNextDraw.GeneratePredictions(lstMegaSena, false, customCycleState); // Custom state
+    /// </summary>
     public static class PredictNextDraw
     {
         /// <summary>

@@ -17,6 +17,27 @@ namespace mega_sena
         public DateTime? DateWhenPicked { get; set; }
     }
 
+    /// <summary>
+    /// Analyzes how many draws it takes from when 3 numbers remain until one is finally picked.
+    ///
+    /// Purpose: Predict the timeline for cycle completion - when can we expect one of the
+    /// remaining numbers to be drawn?
+    ///
+    /// Key Findings:
+    /// - Average: 4.4 draws until one of the 3 remaining is picked
+    /// - Most common: 1 or 2 draws (21.2% each)
+    /// - 80% of the time: within 7 draws
+    /// - Range: 1 to 16 draws
+    ///
+    /// Distribution:
+    /// - 1 draw: 21.2% (very likely!)
+    /// - 2 draws: 21.2%
+    /// - 3-5 draws: 28.8%
+    /// - 6-7 draws: 15.4%
+    /// - 8+ draws: 13.4% (rare outliers)
+    ///
+    /// Usage: AnalyzeDrawsUntilRemainingPicked.Analyze(lstMegaSena);
+    /// </summary>
     public static class AnalyzeDrawsUntilRemainingPicked
     {
         public static void Analyze(List<MegaSena> lstMegaSena)

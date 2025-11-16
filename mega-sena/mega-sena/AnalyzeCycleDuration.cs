@@ -5,6 +5,21 @@ using System.Linq;
 
 namespace mega_sena
 {
+    /// <summary>
+    /// Analyzes the duration of Mega-Sena cycles from start to completion.
+    ///
+    /// Purpose: Calculate statistical metrics about how long it takes for all 60 numbers
+    /// to be drawn at least once, forming a complete cycle.
+    ///
+    /// Key Metrics:
+    /// - Average cycle duration: ~172.8 days (5.7 months)
+    /// - Median cycle duration: ~161 days (5.3 months)
+    /// - Range: 91 to 343 days (3 to 11.3 months)
+    ///
+    /// Also provides current cycle status and comparison to historical averages.
+    ///
+    /// Usage: AnalyzeCycleDuration.Analyze();
+    /// </summary>
     public static class AnalyzeCycleDuration
     {
         public static void Analyze()
