@@ -11,8 +11,8 @@ List<Cycle> lstCycle = objCycleResults.GetCycleList(lstMegaSena);
 //AnalyzeOneTimeNumbers.Analyze();
 //AnalyzeCycleDuration.Analyze();
 //AnalyzeThreeNumbersRemaining.Analyze(lstMegaSena);
-//PredictNextDraw.GeneratePredictions(lstMegaSena);
 //AnalyzeFirstRemainingNumber.Analyze(lstMegaSena);
+//AnalyzeDrawsUntilRemainingPicked.Analyze(lstMegaSena);
 
-// Analyze how many draws until one of the 3 remaining is picked
-AnalyzeDrawsUntilRemainingPicked.Analyze(lstMegaSena);
+// Generate predictions for next draws
+PredictNextDraw.GeneratePredictions(lstMegaSena);

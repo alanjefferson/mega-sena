@@ -11,45 +11,61 @@ namespace mega_sena
         {
             // Get current cycle state from CSV file
             var currentCycle = GetCurrentCycleStateFromCSV();
-            
+
             Console.WriteLine("\n=== PREDICTION FOR NEXT DRAWS ===");
             Console.WriteLine("Based on historical analysis when 3 numbers remain\n");
-            
+
             Console.WriteLine("Current Cycle Status:");
             Console.WriteLine($"Numbers remaining: {string.Join(", ", currentCycle.RemainingNumbers)}");
             Console.WriteLine();
-            
+
             // Get numbers grouped by frequency
             var numbersByFrequency = currentCycle.CycleNumbers
                 .Where(cn => cn.Drawn)
                 .GroupBy(cn => cn.Times)
                 .OrderBy(g => g.Key)
                 .ToDictionary(g => g.Key, g => g.Select(cn => cn.Number).ToList());
-            
+
             Console.WriteLine("Current Frequency Distribution:");
             foreach (var group in numbersByFrequency.OrderByDescending(g => g.Key))
             {
                 Console.WriteLine($"  {group.Key} times: {string.Join(", ", group.Value.OrderBy(n => n))}");
             }
             Console.WriteLine();
-            
+
             // Generate 3 prediction scenarios (one for each remaining number)
             foreach (int remainingNum in currentCycle.RemainingNumbers)
             {
                 Console.WriteLine($"=== SCENARIO: If number {remainingNum} is drawn ===");
-                
+
                 var predictions = GeneratePredictionSet(currentCycle, remainingNum);
-                
+
                 for (int i = 0; i < predictions.Count; i++)
                 {
-                    Console.WriteLine($"\nPrediction #{i + 1}:");
-                    Console.WriteLine($"  Numbers: {string.Join(", ", predictions[i].Numbers.OrderBy(n => n))}");
-                    Console.WriteLine($"  Rationale: {predictions[i].Rationale}");
+                    Console.WriteLine($"\nStrategy #{i + 1}: {predictions[i].Rationale}");
+                    Console.WriteLine($"  Complete 6-number bet: {string.Join("-", predictions[i].Numbers.OrderBy(n => n))}");
+                    Console.WriteLine($"  Breakdown: [{remainingNum}] + [{string.Join(", ", predictions[i].Numbers.Where(n => n != remainingNum).OrderBy(n => n))}]");
                 }
-                
+
                 Console.WriteLine();
             }
-            
+
+            // Summary: Best bets across all scenarios
+            Console.WriteLine("=== RECOMMENDED BETS SUMMARY ===");
+            Console.WriteLine("Top 3 recommended complete bets:\n");
+
+            int betNumber = 1;
+            foreach (int remainingNum in currentCycle.RemainingNumbers.OrderByDescending(n => n))
+            {
+                var prediction = GeneratePredictionByFrequencyRange(currentCycle, remainingNum, 2, 4,
+                    $"Mid-range frequency (2-4 times) with remaining number {remainingNum}");
+
+                Console.WriteLine($"Bet #{betNumber}: {string.Join("-", prediction.Numbers.OrderBy(n => n))}");
+                Console.WriteLine($"  Strategy: {prediction.Rationale}");
+                Console.WriteLine();
+                betNumber++;
+            }
+
             Console.WriteLine("=== END OF PREDICTIONS ===\n");
         }
         
